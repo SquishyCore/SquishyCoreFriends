@@ -1,0 +1,22 @@
+name: SquishyCoreFriends
+version: '${project.version}'
+main: dev.mqrio.squishycorefriends.SquishyCoreFriends
+api-version: 1.18
+description: Friends for SquishyCore
+commands:
+  friend:
+    description: The main command of SquishyCoreFriends
+    usage: /friend [sub command] [arguments]
+    permission: squishycorefriends.use
+  f:
+    description: An alias for the /friend command
+    usage: /f [sub command] [arguments]
+    permission: squishycorefriends.use
+  friends:
+    description: An alias for the /friend command
+    usage: /friends [sub command] [arguments]
+    permission: squishycorefriends.use
+  friendsreload:
+    description: The plugin reloader of SquishyCoreFriends
+    usage: /friendsreload
+    permission: squishycorefriends.reload

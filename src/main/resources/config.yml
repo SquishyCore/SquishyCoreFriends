@@ -1,0 +1,167 @@
+# -------------------------------
+# SquishyCoreFriends
+# v1.0
+# -------------------------------
+
+# The prefix displayed in front of the plugin messages & titles
+prefix: '&d&lSquishy&b&lCore&r &e»&r '
+
+# MySQL database credentials (MySQL is currently the only storage driver supported by this plugin, and thus you have to fill in the credentials below)
+database:
+  hostname: ''
+  username: ''
+  password: ''
+  name: ''
+  port: '3306'
+  tables_prefix: 'sc_friends_'
+
+permissions:
+  reload: 'squishycorefriends.reload' # Given to those who can reload the plugin
+  use: 'squishycorefriends.use' # Given to those who can use the plugin commands
+  help: 'squishycorefriends.help' # Given to those who can use the plugin help command
+  list: 'squishycorefriends.list' # Given to those who can list their friends
+  home: 'squishycorefriends.home' # Given to those who can teleport to a friendship home
+  sethome: 'squishycorefriends.home.set' # Given to those who can set a friendship home location
+  tp: 'squishycorefriends.tp' # Given to those who can teleport to a friend
+  add: 'squishycorefriends.add' # Given to those who can add friends
+  remove: 'squishycorefriends.remove' # Given to those who can remove friends
+  hug: 'squishycorefriends.hug' # Given to those who can hug a friend
+  toggle: 'squishycorefriends.toggle' # Given to those who can toggle their friend requests on/off
+  toggleHugs: 'squishycorefriends.toggle.hugs' # Given to those who can toggle their ability to be hugged on/off
+  requestAccept: 'squishycorefriends.requests.accept' # Given to those who can accept a friend request
+  requestDeny: 'squishycorefriends.requests.deny' # Given to those who can deny a friend request
+  requestIgnore: 'squishycorefriends.requests.ignore' # Given to those who can ignore a friend request
+  tpRequestAccept: 'squishycorefriends.tprequests.accept' # Given to those who can accept a teleport request
+  tpRequestDeny: 'squishycorefriends.tprequests.deny' # Given to those who can deny a teleport request
+  tpRequestIgnore: 'squishycorefriends.tprequests.ignore' # Given to those who can ignore a teleport request
+
+  # Define the permission node prefix which will be used for limiting the players' friends count
+  # For example, if a player has the permission node `squishycorefriends.limits.2` then their total friends limit will be 2 friends.
+  # In addition to that, if a player has the permission node `squishycorefriends.limits.+3` then 3 more friends will be added to their limit (2 + 3 = 5)
+  # And if a player has the permission node `squishycorefriends.limits.-1` then 1 friend will be removed from the limit (2 + 3 - 1 = 4)
+  limits_prefix: 'squishycorefriends.limits.'
+
+# Allow players to send friend requests to other offline players. Offline players will then be notified about their pending friend requests once they join the server
+allowOfflineFriendRequests: false # Offline requests is a still "to be implemented" feature. Keep this `false` till the feature is implemented
+
+# Define the number of seconds you want inactive/ignored friend requests to expire after
+requestsExpiry: 300
+
+friendTeleports:
+  instantlyTeleport: true # Set this to `false` if you want friend teleports to work through requests
+  allowOfflineTeleports: true # Allow teleports to friends which are offline. This is ineffective if `instantlyTeleport` is false
+  requestsExpiry: 300 # Define the number of seconds you want inactive/ignored teleport requests to expire after
+
+alerts:
+  onceFriendJoins: true # Send a message to the friends of a player once they join
+  onceFriendLeaves: true # Send a message to the friends of a player once they leave
+
+effects:
+  hugSound: ENTITY_PLAYER_LEVELUP # Check https://helpch.at/docs/1.19.3/org/bukkit/Sound.html for a list
+  hugSoundVolume: 10
+  hugSoundPitch: 29
+
+  teleportSound: BLOCK_BELL_USE # Check https://helpch.at/docs/1.19.3/org/bukkit/Sound.html for a list
+  teleportSoundVolume: 10
+  teleportSoundPitch: 29
+
+  friendJoinSound: ENTITY_PLAYER_LEVELUP # Check https://helpch.at/docs/1.19.3/org/bukkit/Sound.html for a list
+  friendJoinSoundVolume: 10
+  friendJoinSoundPitch: 29
+
+locale:
+  dbConnectionError: "&cFailed to connect to the database, disabling..."
+  unexpectedError: "&cAn unexpected internal error has occurred"
+  enabledPlugin: "&2Enabled SquishyCoreFriends"
+  disabledPlugin: "&eDisabled SquishyCoreFriends"
+  reloadedPlugin: "&aYou've reloaded SquishyCoreFriends."
+
+  onlyPlayerUsable: "&7This command is runnable as a player only."
+  noCommandAccess: "&7You don't have access to use this command."
+  invalidCommandUsage: "&7Invalid command usage. Use: "
+  invalidPlayerUsername: "&7Invalid player username, please type in the username of a valid player."
+  notFriends: "&7You're not friends with this player."
+
+  cantFriendYourself: "&7You can't send a friend request to yourself."
+  offlineRequestsAreDisallowed: "&7You can't send a friend request to &e{username}&7 because they're not online."
+  notAcceptingRequests: "&e{username}&7 isn't accepting any friend requests."
+  requesteeCantAcceptRequests: "&e{username}&7 can't accept any more friend requests."
+  requesterReachedMaxFriends: "&7You can't send any more friend requests."
+  alreadyFriends: "&7You're already friends with this player."
+  requestAlreadyOngoing: "&7There's already a pending friend request to this player."
+
+  friendRequestNotificationWhileOnline: "&e{sender}&7 has sent you a friend request"
+  friendRequestNotificationWhileOnlineAccept: "&a&l&n[ACCEPT]"
+  friendRequestNotificationWhileOnlineDeny: "&c&l&n[DENY]"
+  friendRequestNotificationWhileOnlineIgnore: "&7&l&n[IGNORE]"
+  friendRequestSent: "&7You have sent a friend request to &e{requestee}"
+
+  nothingToIgnore: "&7This player hasn't sent a friend request for you to ignore it."
+  ignoredRequest: "&7You've ignored the friend request from &e{sender}&7, they won't be notified about this."
+
+  nothingToAccept: "&7This player hasn't sent a friend request for you to accept it."
+  acceptedRequestRequesterVersion: "&7You and &e{requestee}&7 are friends now!"
+  acceptedRequestRequesteeVersion: "&7You and &e{sender}&7 are friends now!"
+
+  nothingToDeny: "&7This player hasn't sent a friend request for you to deny it."
+  deniedRequestRequesterVersion: "&e{requestee}&7 has denied your friend request."
+  deniedRequestRequesteeVersion: "&7You've denied &e{sender}&7's friend request."
+
+  requestExpiredRequesterVersion: "&7The friend request sent to &e{requestee}&7 has expired."
+  requestExpiredRequesteeVersion: "&7The friend request from &e{sender}&7 has expired."
+  tpRequestExpiredRequesterVersion: "&7The teleport request sent to &e{requestee}&7 has expired."
+  tpRequestExpiredRequesteeVersion: "&7The teleport request from &e{sender}&7 has expired."
+
+  toggledRequestsOn: "&7You have toggled your friend requests &aon"
+  toggledRequestsOff: "&7You have toggled your friend requests &coff"
+
+  removedFriend: "&7You have removed &e{friend}&7 from your friends."
+
+  noFriendshipHome: "&7You don't have a home set with &e{friend}"
+  teleportedToHome: "&7You have teleported to the home of you and &e{friend}"
+  setHome: "&7You have set your current location as the home of you and &e{friend}"
+
+  offlineTpsAreDisabled: "&7You can't teleport to this friend because they're offline."
+  teleportedAlert_TeleporterVersion: "&7You've teleported to &e{friend}"
+  teleportedAlert_TeleportedToVersion: "&e{teleporter}&7 has teleported to you"
+  tpRequestNotification: "&e{sender}&7 has sent you a teleport request"
+  tpRequestNotificationAccept: "&a&l&n[ACCEPT]"
+  tpRequestNotificationDeny: "&c&l&n[DENY]"
+  tpRequestNotificationIgnore: "&7&l&n[IGNORE]"
+  tpRequestSent: "&7You have sent a teleport request to &e{requestee}"
+  tpNothingToAccept: "&7This player hasn't sent a teleport request for you to accept it."
+  tpNothingToDeny: "&7This player hasn't sent a teleport request for you to deny it."
+  tpAcceptNoLongerOnline: "&7You can't accept this teleport request because &e{sender}&7 is no longer online."
+  deniedTpRequestRequesterVersion: "&e{requestee}&7 has denied your teleport request."
+  deniedTpRequestRequesteeVersion: "&7You've denied &e{sender}&7's teleport request."
+  tpNothingToIgnore: "&7This player hasn't sent a teleport request for you to ignore it."
+  tpIgnoredRequest: "&7You've ignored the teleport request from &e{sender}&7, they won't be notified about this."
+
+  friendJoinedAlert: "&7Your friend &a{friend}&7 has joined the server."
+  friendLeftAlert: "&7Your friend &c{friend}&7 has left the server."
+
+  friendListHeader: "&7════ ⋆ &eFriends&7 ⋆ ════"
+  friendListFooter: "&7======== Page {current} of {max} ========"
+  friendListNextPage: "&a&l&n[NEXT PAGE]"
+  friendListPrevPage: "&e&l&n[PREVIOUS PAGE]"
+  friendListLineOnline: "&a•&7 {friend}"
+  friendListLineOffline: "&c•&7 {friend}"
+  friendListHug: "&e&l[HUG]"
+  friendListTeleport: "&e&l[TELEPORT]"
+  friendListHome: "&e&l[HOME]"
+  friendListInvalidPageNumber: "&7Invalid page number."
+  friendListNonetoShow: "&cYou don't have any friends yet, try making a friend first!"
+
+  hugNotOnline: "&7You can't hug &e{friend}&7 because they're not online at the moment!"
+  huggedHuggerVersion: "&7You've sent &e{friend}&7 a hug! &6&l*✧"
+  huggedHuggedVersion: "&e{hugger}&7 has sent you a warm hug! &6&l*✧"
+  toggledHugsOn: "&7You have toggled your ability to be hugged &aon"
+  toggledHugsOff: "&7You have toggled your ability to be hugged &coff"
+  notAcceptingHugs: "&e{friend}&7 isn't accepting hugs."
+
+  helpListHeader: "&7════ ⋆ &eFriends | Help&7 ⋆ ════"
+  helpListFooter: "&7======== Page {current} of {max} ========"
+  helpListNextPage: "&a&l&n[NEXT PAGE]"
+  helpListPrevPage: "&e&l&n[PREVIOUS PAGE]"
+  helpListCommand: "&e•&7 {command} — {description}"
+  helpListInvalidPageNumber: "&7Invalid page number."
