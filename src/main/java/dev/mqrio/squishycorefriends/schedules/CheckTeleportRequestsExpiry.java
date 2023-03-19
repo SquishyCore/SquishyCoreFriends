@@ -9,6 +9,8 @@ import org.bukkit.OfflinePlayer;
 
 import java.sql.SQLException;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -28,6 +30,7 @@ public class CheckTeleportRequestsExpiry {
                         Configuration config = new Configuration();
                         String pluginPrefix = config.GetConfig().getString("prefix");
 
+                        List<String> keysToRemove = new ArrayList<String>();
                         for (String key : SquishyCoreFriends.tpRequestsCache.keySet()) {
                             if( (Instant.now().getEpochSecond() - SquishyCoreFriends.tpRequestsCache.get(key).SentAt) >= config.GetConfig().getLong("friendTeleports.requestsExpiry") ) {
                                 String requesterUUID = key.split(":")[0];
@@ -57,9 +60,10 @@ public class CheckTeleportRequestsExpiry {
                                     requesteeBukkitPlayer.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', pluginPrefix + config.GetConfig().getString("locale.tpRequestExpiredRequesteeVersion").replaceAll(Pattern.quote("{sender}"), requesterPlayer.username)));
                                 }
 
-                                SquishyCoreFriends.tpRequestsCache.remove(key);
+                                keysToRemove.add(key);
                             }
                         }
+                        SquishyCoreFriends.tpRequestsCache.keySet().removeAll(keysToRemove);
 
                     }
                 });

@@ -9,6 +9,8 @@ import org.bukkit.OfflinePlayer;
 
 import java.sql.SQLException;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -28,6 +30,7 @@ public class CheckFriendRequestsExpiry {
                         Configuration config = new Configuration();
                         String pluginPrefix = config.GetConfig().getString("prefix");
 
+                        List<String> keysToRemove = new ArrayList<String>();
                         for (String key : SquishyCoreFriends.requestsCache.keySet()) {
                             if( (Instant.now().getEpochSecond() - SquishyCoreFriends.requestsCache.get(key).SentAt) >= config.GetConfig().getLong("requestsExpiry") ) {
                                 String requesterUUID = key.split(":")[0];
@@ -57,9 +60,10 @@ public class CheckFriendRequestsExpiry {
                                     requesteeBukkitPlayer.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', pluginPrefix + config.GetConfig().getString("locale.requestExpiredRequesteeVersion").replaceAll(Pattern.quote("{sender}"), requesterPlayer.username)));
                                 }
 
-                                SquishyCoreFriends.requestsCache.remove(key);
+                                keysToRemove.add(key);
                             }
                         }
+                        SquishyCoreFriends.requestsCache.keySet().removeAll(keysToRemove);
 
                     }
                 });
