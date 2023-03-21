@@ -2,6 +2,7 @@ package dev.mqrio.squishycorefriends.events;
 
 import dev.mqrio.squishycorefriends.config.Configuration;
 import dev.mqrio.squishycorefriends.database.Actions;
+import dev.mqrio.squishycorefriends.integrations.SuperVanish;
 import dev.mqrio.squishycorefriends.models.Friendship;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -26,6 +27,12 @@ public class PlayerQuit implements Listener {
         new Actions().UpdatePlayerLastPos(player.getUniqueId().toString(), player.getLocation());
 
         if( config.GetConfig().getBoolean("alerts.onceFriendLeaves") ) {
+            if( config.GetConfig().getBoolean("SuperVanish.respect") ) {
+                if(new SuperVanish().isVanished(player)) {
+                    return;
+                }
+            }
+
             Map<Integer, Friendship> friendships = new Actions().GetFriendships(player.getUniqueId().toString());
             for (Integer key : friendships.keySet()) {
                 Friendship friendship = friendships.get(key);

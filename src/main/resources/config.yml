@@ -69,6 +69,9 @@ effects:
   friendJoinSoundVolume: 10
   friendJoinSoundPitch: 29
 
+SuperVanish:
+  respect: true
+
 locale:
   dbConnectionError: "&cFailed to connect to the database, disabling..."
   unexpectedError: "&cAn unexpected internal error has occurred"

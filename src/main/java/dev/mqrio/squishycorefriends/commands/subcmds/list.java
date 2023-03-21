@@ -2,6 +2,7 @@ package dev.mqrio.squishycorefriends.commands.subcmds;
 
 import dev.mqrio.squishycorefriends.config.Configuration;
 import dev.mqrio.squishycorefriends.database.Actions;
+import dev.mqrio.squishycorefriends.integrations.SuperVanish;
 import dev.mqrio.squishycorefriends.models.Friendship;
 import dev.mqrio.squishycorefriends.paginator.Paginator;
 import net.kyori.text.TextComponent;
@@ -51,7 +52,15 @@ public class list {
             OfflinePlayer friendBukkitPlayer = Bukkit.getOfflinePlayer(UUID.fromString(friendPlayer.uuid));
 
             if(friendBukkitPlayer.isOnline()) {
-                friendsLines.add(ChatColor.translateAlternateColorCodes('&', config.GetConfig().getString("locale.friendListLineOnline").replaceAll(Pattern.quote("{friend}"), friendPlayer.username)) + "|METADATA:" + friendPlayer.username);
+                if( config.GetConfig().getBoolean("SuperVanish.respect") ) {
+                    if(new SuperVanish().isVanished(friendBukkitPlayer.getPlayer())) {
+                        friendsLines.add(ChatColor.translateAlternateColorCodes('&', config.GetConfig().getString("locale.friendListLineOffline").replaceAll(Pattern.quote("{friend}"), friendPlayer.username)) + "|METADATA:" + friendPlayer.username);
+                    } else {
+                        friendsLines.add(ChatColor.translateAlternateColorCodes('&', config.GetConfig().getString("locale.friendListLineOnline").replaceAll(Pattern.quote("{friend}"), friendPlayer.username)) + "|METADATA:" + friendPlayer.username);
+                    }
+                } else {
+                    friendsLines.add(ChatColor.translateAlternateColorCodes('&', config.GetConfig().getString("locale.friendListLineOnline").replaceAll(Pattern.quote("{friend}"), friendPlayer.username)) + "|METADATA:" + friendPlayer.username);
+                }
             } else {
                 friendsLines.add(ChatColor.translateAlternateColorCodes('&', config.GetConfig().getString("locale.friendListLineOffline").replaceAll(Pattern.quote("{friend}"), friendPlayer.username)) + "|METADATA:" + friendPlayer.username);
             }
