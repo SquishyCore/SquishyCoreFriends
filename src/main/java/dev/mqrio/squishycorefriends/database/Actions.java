@@ -95,6 +95,19 @@ public class Actions {
         stmt.setString(2, uuid);
         stmt.executeUpdate();
 
+        sql = "SELECT * FROM " + TablesPrefix + "players WHERE username = ? AND uuid != ?;";
+        stmt = connection.prepareStatement(sql);
+        stmt.setString(1, username);
+        stmt.setString(2, uuid);
+        ResultSet results = stmt.executeQuery();
+        if (results.next()) {
+            long id = results.getLong("id");
+            sql = "UPDATE " + TablesPrefix + "players SET username = '' WHERE id = ?;";
+            stmt = connection.prepareStatement(sql);
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+        }
+
         SyncPlayerFriendsLimit(Bukkit.getPlayer(UUID.fromString(uuid)));
     }
 
