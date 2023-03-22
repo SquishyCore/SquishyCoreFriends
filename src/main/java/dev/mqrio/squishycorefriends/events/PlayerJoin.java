@@ -10,6 +10,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
@@ -19,7 +20,7 @@ import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class PlayerJoin implements Listener {
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST) // has to be lowest for the SuperVanish integration to work properly
     public void playerJoinEvent(PlayerJoinEvent event) throws SQLException {
         Configuration config = new Configuration();
 

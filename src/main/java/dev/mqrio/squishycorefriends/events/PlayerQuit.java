@@ -9,6 +9,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
@@ -18,7 +19,7 @@ import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class PlayerQuit implements Listener {
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST) // has to be highest for the SuperVanish integration to work properly
     public void playerQuitEvent(PlayerQuitEvent event) throws SQLException {
         Configuration config = new Configuration();
 
