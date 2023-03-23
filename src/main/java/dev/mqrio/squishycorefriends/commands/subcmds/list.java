@@ -1,8 +1,8 @@
 package dev.mqrio.squishycorefriends.commands.subcmds;
 
+import de.myzelyam.api.vanish.VanishAPI;
 import dev.mqrio.squishycorefriends.config.Configuration;
 import dev.mqrio.squishycorefriends.database.Actions;
-import dev.mqrio.squishycorefriends.integrations.SuperVanish;
 import dev.mqrio.squishycorefriends.models.Friendship;
 import dev.mqrio.squishycorefriends.paginator.Paginator;
 import net.kyori.text.TextComponent;
@@ -53,8 +53,12 @@ public class list {
 
             if(friendBukkitPlayer.isOnline()) {
                 if( config.GetConfig().getBoolean("SuperVanish.respect") ) {
-                    if(new SuperVanish().isVanished(friendBukkitPlayer.getPlayer())) {
-                        friendsLines.add(ChatColor.translateAlternateColorCodes('&', config.GetConfig().getString("locale.friendListLineOffline").replaceAll(Pattern.quote("{friend}"), friendPlayer.username)) + "|METADATA:" + friendPlayer.username);
+                    if( Bukkit.getPluginManager().isPluginEnabled("SuperVanish") || Bukkit.getPluginManager().isPluginEnabled("PremiumVanish") ) {
+                        if( !VanishAPI.canSee(player, friendBukkitPlayer.getPlayer()) ) {
+                            friendsLines.add(ChatColor.translateAlternateColorCodes('&', config.GetConfig().getString("locale.friendListLineOffline").replaceAll(Pattern.quote("{friend}"), friendPlayer.username)) + "|METADATA:" + friendPlayer.username);
+                        } else {
+                            friendsLines.add(ChatColor.translateAlternateColorCodes('&', config.GetConfig().getString("locale.friendListLineOnline").replaceAll(Pattern.quote("{friend}"), friendPlayer.username)) + "|METADATA:" + friendPlayer.username);
+                        }
                     } else {
                         friendsLines.add(ChatColor.translateAlternateColorCodes('&', config.GetConfig().getString("locale.friendListLineOnline").replaceAll(Pattern.quote("{friend}"), friendPlayer.username)) + "|METADATA:" + friendPlayer.username);
                     }

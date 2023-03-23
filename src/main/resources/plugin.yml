@@ -3,6 +3,7 @@ version: '${project.version}'
 main: dev.mqrio.squishycorefriends.SquishyCoreFriends
 api-version: 1.18
 description: Friends for SquishyCore
+softdepend: [SuperVanish, PremiumVanish]
 commands:
   friend:
     description: The main command of SquishyCoreFriends
