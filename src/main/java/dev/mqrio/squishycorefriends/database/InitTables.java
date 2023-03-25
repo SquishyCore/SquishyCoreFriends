@@ -20,7 +20,7 @@ public class InitTables {
             throw new SQLException("Failed to initialize tables");
         }
 
-        sql = "CREATE TABLE IF NOT EXISTS " + TablesPrefix + "players (`id` BIGINT NOT NULL AUTO_INCREMENT, `uuid` varchar(255), `username` TEXT, `is_accepting` INT, `is_huggable` INT, `lastpos_x` DOUBLE, `lastpos_y` DOUBLE, `lastpos_z` DOUBLE, `lastpos_world` TEXT, `max_friends` BIGINT, PRIMARY KEY(id, uuid));";
+        sql = "CREATE TABLE IF NOT EXISTS " + TablesPrefix + "players (`id` BIGINT NOT NULL AUTO_INCREMENT, `uuid` varchar(255), `username` TEXT, `is_accepting` INT, `is_huggable` INT, `is_teleportable` INT, `lastpos_x` DOUBLE, `lastpos_y` DOUBLE, `lastpos_z` DOUBLE, `lastpos_world` TEXT, `max_friends` BIGINT, PRIMARY KEY(id, uuid));";
         try {
             PreparedStatement stmt = GetDb().prepareStatement(sql);
             stmt.executeUpdate();

@@ -81,7 +81,7 @@ public class Actions {
             return;
         }
 
-        sql = "INSERT IGNORE INTO " + TablesPrefix + "players (uuid, username, is_accepting, is_huggable, max_friends, lastpos_x, lastpos_y, lastpos_z, lastpos_world) VALUES (?, ?, 1, 1, 0, 0, 0, 0, '');";
+        sql = "INSERT IGNORE INTO " + TablesPrefix + "players (uuid, username, is_accepting, is_huggable, is_teleportable, max_friends, lastpos_x, lastpos_y, lastpos_z, lastpos_world) VALUES (?, ?, 1, 1, 1, 0, 0, 0, 0, '');";
         PreparedStatement stmtNew = connection.prepareStatement(sql);
         stmtNew.setString(1, uuid);
         stmtNew.setString(2, username);
@@ -150,6 +150,20 @@ public class Actions {
         stmt.executeUpdate();
     }
 
+    public void DisableTeleports(String uuid) throws SQLException {
+        String sql = "UPDATE " + TablesPrefix + "players SET is_teleportable = 0 WHERE uuid = ?;";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, uuid);
+        stmt.executeUpdate();
+    }
+
+    public void EnableTeleports(String uuid) throws SQLException {
+        String sql = "UPDATE " + TablesPrefix + "players SET is_teleportable = 1 WHERE uuid = ?;";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, uuid);
+        stmt.executeUpdate();
+    }
+
     public dev.mqrio.squishycorefriends.models.Player GetPlayer(String uuid, Integer id) throws SQLException {
         String sql;
         if(id <= 0 ) {
@@ -172,14 +186,19 @@ public class Actions {
 
             Boolean isAccepting = true;
             Boolean isHuggable = true;
+            Boolean isTeleportable = true;
             if( results.getInt("is_accepting") <= 0 ) {
                 isAccepting = false;
             }
             if( results.getInt("is_huggable") <= 0 ) {
                 isHuggable = false;
             }
+            if( results.getInt("is_teleportable") <= 0 ) {
+                isTeleportable = false;
+            }
             player.isAccepting = isAccepting;
             player.isHuggable = isHuggable;
+            player.isTeleportable = isTeleportable;
             player.maxFriends = results.getInt("max_friends");
 
             player.LastPosX = results.getDouble("lastpos_x");

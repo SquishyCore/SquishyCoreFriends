@@ -28,6 +28,7 @@ permissions:
   hug: 'squishycorefriends.hug' # Given to those who can hug a friend
   toggle: 'squishycorefriends.toggle' # Given to those who can toggle their friend requests on/off
   toggleHugs: 'squishycorefriends.toggle.hugs' # Given to those who can toggle their ability to be hugged on/off
+  toggleTps: 'squishycorefriends.toggle.tps' # Given to those who can toggle their friend teleports on/off
   requestAccept: 'squishycorefriends.requests.accept' # Given to those who can accept a friend request
   requestDeny: 'squishycorefriends.requests.deny' # Given to those who can deny a friend request
   requestIgnore: 'squishycorefriends.requests.ignore' # Given to those who can ignore a friend request
@@ -139,6 +140,9 @@ locale:
   deniedTpRequestRequesteeVersion: "&7You've denied &e{sender}&7's teleport request."
   tpNothingToIgnore: "&7This player hasn't sent a teleport request for you to ignore it."
   tpIgnoredRequest: "&7You've ignored the teleport request from &e{sender}&7, they won't be notified about this."
+  toggledTpsOn: "&7You have toggled your friend teleports &aon"
+  toggledTpsOff: "&7You have toggled your friend teleports &coff"
+  notAcceptingTps: "&e{friend}&7 isn't accepting teleportations to them."
 
   friendJoinedAlert: "&7Your friend &a{friend}&7 has joined the server."
   friendLeftAlert: "&7Your friend &c{friend}&7 has left the server."

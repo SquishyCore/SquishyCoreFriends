@@ -155,6 +155,13 @@ public class cmdHandler implements CommandExecutor {
                         throw new RuntimeException(e);
                     }
                     break;
+                case "toggletps":
+                    try {
+                        new toggletps(sender, subArgs);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
                 default:
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', pluginPrefix + config.GetConfig().getString("locale.invalidCommandUsage") + "/friend help"));
             }

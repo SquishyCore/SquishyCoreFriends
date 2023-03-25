@@ -56,6 +56,12 @@ public class tp {
 
         OfflinePlayer friendBukkitPlayer = Bukkit.getOfflinePlayer(UUID.fromString(friendPlayer.uuid));
 
+        if(!friendPlayer.isTeleportable) {
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', pluginPrefix + config.GetConfig().getString("locale.notAcceptingTps").replaceAll(Pattern.quote("{friend}"), friendPlayer.username)));
+
+            return;
+        }
+
         if( config.GetConfig().getBoolean("friendTeleports.instantlyTeleport") ) {
             if (!friendBukkitPlayer.isOnline()) {
                 if (!config.GetConfig().getBoolean("friendTeleports.allowOfflineTeleports")) {

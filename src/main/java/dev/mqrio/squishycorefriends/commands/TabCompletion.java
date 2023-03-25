@@ -28,6 +28,7 @@ public class TabCompletion implements TabCompleter {
                 completions.add("list");
                 completions.add("toggle");
                 completions.add("togglehugs");
+                completions.add("toggletps");
 
                 return completions;
             }

@@ -6,6 +6,7 @@ public class Player {
     public String username;
     public Boolean isAccepting;
     public Boolean isHuggable;
+    public Boolean isTeleportable;
     public Integer maxFriends;
 
     public double LastPosX;
