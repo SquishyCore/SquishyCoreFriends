@@ -29,6 +29,7 @@ public class help {
         pluginCommands.put("/friend list [page no.]", "List your friends.");
         pluginCommands.put("/friend toggle", "Toggle your friend requests on/off.");
         pluginCommands.put("/friend togglehugs", "Toggle your ability to be hugged on/off.");
+        pluginCommands.put("/friend toggletps", "Toggle your friend teleports on/off.");
         pluginCommands.put("/friend hug [username]", "Hug your friend.");
         pluginCommands.put("/friend add [username]", "Add a player as your friend.");
         pluginCommands.put("/friend remove [username]", "Remove a player from your friends.");
