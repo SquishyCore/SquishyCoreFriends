@@ -55,7 +55,7 @@ public class tpyes {
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', pluginPrefix + config.GetConfig().getString("locale.teleportedAlert_TeleportedToVersion").replaceAll(Pattern.quote("{teleporter}"), requesterPlayer.username)));
 
                 Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(0, 127, 255), 5.0F);
-                requesterBukkitPlayer.getPlayer().spawnParticle(Particle.REDSTONE, player.getLocation(), 250, dustOptions);
+                requesterBukkitPlayer.getPlayer().getWorld().spawnParticle(Particle.REDSTONE, player.getLocation(), 250, dustOptions);
                 requesterBukkitPlayer.getPlayer().playSound(requesterBukkitPlayer.getPlayer().getLocation(), Sound.valueOf(config.GetConfig().getString("effects.teleportSound")), config.GetConfig().getInt("effects.teleportSoundVolume"), config.GetConfig().getInt("effects.teleportSoundPitch"));
             }
 

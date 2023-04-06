@@ -28,6 +28,7 @@ permissions:
   hug: 'squishycorefriends.hug' # Given to those who can hug a friend
   toggle: 'squishycorefriends.toggle' # Given to those who can toggle their friend requests on/off
   toggleHugs: 'squishycorefriends.toggle.hugs' # Given to those who can toggle their ability to be hugged on/off
+  toggleSneakHugs: 'squishycorefriends.toggle.sneakhugs' # Given to those who can toggle their ability to sneak hug on/off
   toggleTps: 'squishycorefriends.toggle.tps' # Given to those who can toggle their friend teleports on/off
   requestAccept: 'squishycorefriends.requests.accept' # Given to those who can accept a friend request
   requestDeny: 'squishycorefriends.requests.deny' # Given to those who can deny a friend request
@@ -61,6 +62,7 @@ effects:
   hugSound: ENTITY_PLAYER_LEVELUP # Check https://helpch.at/docs/1.19.3/org/bukkit/Sound.html for a list
   hugSoundVolume: 10
   hugSoundPitch: 29
+  hugParticles: FLAME
 
   teleportSound: BLOCK_BELL_USE # Check https://helpch.at/docs/1.19.3/org/bukkit/Sound.html for a list
   teleportSoundVolume: 10
@@ -72,6 +74,8 @@ effects:
 
 SuperVanish:
   respect: true
+
+allowRightClickHugging: true
 
 locale:
   dbConnectionError: "&cFailed to connect to the database, disabling..."
@@ -164,6 +168,8 @@ locale:
   huggedHuggedVersion: "&e{hugger}&7 has sent you a warm hug! &6&l*✧"
   toggledHugsOn: "&7You have toggled your ability to be hugged &aon"
   toggledHugsOff: "&7You have toggled your ability to be hugged &coff"
+  toggledSneakHugsOn: "&7You have toggled your ability to sneak (shift) hug &aon"
+  toggledSneakHugsOff: "&7You have toggled your ability to sneak (shift) hug &coff"
   notAcceptingHugs: "&e{friend}&7 isn't accepting hugs."
 
   helpListHeader: "&7════ ⋆ &eFriends | Help&7 ⋆ ════"

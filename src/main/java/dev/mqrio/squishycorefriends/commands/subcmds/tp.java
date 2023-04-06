@@ -82,7 +82,7 @@ public class tp {
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', pluginPrefix + config.GetConfig().getString("locale.teleportedAlert_TeleporterVersion").replaceAll(Pattern.quote("{friend}"), friendPlayer.username)));
 
                     Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(0, 127, 255), 5.0F);
-                    player.spawnParticle(Particle.REDSTONE, player.getLocation(), 250, dustOptions);
+                    player.getWorld().spawnParticle(Particle.REDSTONE, player.getLocation(), 250, dustOptions);
                     player.playSound(player.getLocation(), Sound.valueOf(config.GetConfig().getString("effects.teleportSound")), config.GetConfig().getInt("effects.teleportSoundVolume"), config.GetConfig().getInt("effects.teleportSoundPitch"));
                 }
             } else {
@@ -93,7 +93,7 @@ public class tp {
                 friendBukkitPlayer.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', pluginPrefix + config.GetConfig().getString("locale.teleportedAlert_TeleportedToVersion").replaceAll(Pattern.quote("{teleporter}"), player.getName())));
 
                 Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(0, 127, 255), 5.0F);
-                player.spawnParticle(Particle.REDSTONE, player.getLocation(), 250, dustOptions);
+                player.getWorld().spawnParticle(Particle.REDSTONE, player.getLocation(), 250, dustOptions);
                 player.playSound(player.getLocation(), Sound.valueOf(config.GetConfig().getString("effects.teleportSound")), config.GetConfig().getInt("effects.teleportSoundVolume"), config.GetConfig().getInt("effects.teleportSoundPitch"));
             }
         } else {

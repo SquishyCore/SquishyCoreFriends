@@ -1,9 +1,9 @@
 package dev.mqrio.squishycorefriends.commands;
 
 import dev.mqrio.squishycorefriends.SquishyCoreFriends;
+import dev.mqrio.squishycorefriends.commands.subcmds.*;
 import dev.mqrio.squishycorefriends.config.Configuration;
 import dev.mqrio.squishycorefriends.database.Database;
-import dev.mqrio.squishycorefriends.commands.subcmds.*;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -151,6 +151,13 @@ public class cmdHandler implements CommandExecutor {
                 case "togglehugs":
                     try {
                         new togglehugs(sender, subArgs);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                case "togglesneakhugs":
+                    try {
+                        new togglesneakhugs(sender, subArgs);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }

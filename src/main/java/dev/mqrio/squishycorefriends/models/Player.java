@@ -7,6 +7,7 @@ public class Player {
     public Boolean isAccepting;
     public Boolean isHuggable;
     public Boolean isTeleportable;
+    public Boolean allowsRightClickHugs;
     public Integer maxFriends;
 
     public double LastPosX;

@@ -9,7 +9,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class help {
@@ -29,6 +32,7 @@ public class help {
         pluginCommands.put("/friend list [page no.]", "List your friends.");
         pluginCommands.put("/friend toggle", "Toggle your friend requests on/off.");
         pluginCommands.put("/friend togglehugs", "Toggle your ability to be hugged on/off.");
+        pluginCommands.put("/friend togglesneakhugs", "Toggle your ability to hug your friends by sneaking on/off.");
         pluginCommands.put("/friend toggletps", "Toggle your friend teleports on/off.");
         pluginCommands.put("/friend hug [username]", "Hug your friend.");
         pluginCommands.put("/friend add [username]", "Add a player as your friend.");
