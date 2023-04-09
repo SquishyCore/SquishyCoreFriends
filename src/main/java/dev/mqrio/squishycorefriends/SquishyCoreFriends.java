@@ -5,9 +5,7 @@ import dev.mqrio.squishycorefriends.cache.tpRequestsCache;
 import dev.mqrio.squishycorefriends.commands.registerCommands;
 import dev.mqrio.squishycorefriends.config.Configuration;
 import dev.mqrio.squishycorefriends.database.Database;
-import dev.mqrio.squishycorefriends.events.PlayerJoin;
-import dev.mqrio.squishycorefriends.events.PlayerQuit;
-import dev.mqrio.squishycorefriends.events.PlayerRightClickEvent;
+import dev.mqrio.squishycorefriends.events.*;
 import dev.mqrio.squishycorefriends.schedules.CheckFriendRequestsExpiry;
 import dev.mqrio.squishycorefriends.schedules.SyncPlayerFriendLimits;
 import org.bukkit.Bukkit;
@@ -58,6 +56,8 @@ public final class SquishyCoreFriends extends JavaPlugin {
         // Events
         getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
         getServer().getPluginManager().registerEvents(new PlayerQuit(), this);
+        getServer().getPluginManager().registerEvents(new PlayerVanish(), this);
+        getServer().getPluginManager().registerEvents(new PlayerUnvanish(), this);
         getServer().getPluginManager().registerEvents(new PlayerRightClickEvent(), this);
 
         // Initialize schedulers

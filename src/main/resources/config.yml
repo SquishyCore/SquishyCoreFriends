@@ -74,6 +74,7 @@ effects:
 
 SuperVanish:
   respect: true
+  sendFakeFriendJoinLeaveMessages: true
 
 allowRightClickHugging: true
 
