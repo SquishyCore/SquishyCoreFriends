@@ -7,6 +7,7 @@ import dev.mqrio.squishycorefriends.models.Friendship;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -47,7 +48,8 @@ public class PlayerUnvanish implements Listener {
 
                 OfflinePlayer otherPlayerBukkitInstance = Bukkit.getOfflinePlayer(UUID.fromString(otherPlayer));
                 if (otherPlayerBukkitInstance.isOnline()) {
-                    otherPlayerBukkitInstance.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.GetConfig().getString("locale.friendLeftAlert").replaceAll(Pattern.quote("{friend}"), player.getName())));
+                    otherPlayerBukkitInstance.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.GetConfig().getString("locale.friendJoinedAlert").replaceAll(Pattern.quote("{friend}"), player.getName())));
+                    otherPlayerBukkitInstance.getPlayer().playSound(otherPlayerBukkitInstance.getPlayer().getLocation(), Sound.valueOf(config.GetConfig().getString("effects.friendJoinSound")), config.GetConfig().getInt("effects.friendJoinSoundVolume"), config.GetConfig().getInt("effects.friendJoinSoundPitch"));
                 }
             }
         }

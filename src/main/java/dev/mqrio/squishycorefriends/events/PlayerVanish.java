@@ -46,8 +46,7 @@ public class PlayerVanish implements Listener {
 
                 OfflinePlayer otherPlayerBukkitInstance = Bukkit.getOfflinePlayer(UUID.fromString(otherPlayer));
                 if (otherPlayerBukkitInstance.isOnline()) {
-                    otherPlayerBukkitInstance.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.GetConfig().getString("locale.friendJoinedAlert").replaceAll(Pattern.quote("{friend}"), player.getName())));
-                    otherPlayerBukkitInstance.getPlayer().playSound(otherPlayerBukkitInstance.getPlayer().getLocation(), Sound.valueOf(config.GetConfig().getString("effects.friendJoinSound")), config.GetConfig().getInt("effects.friendJoinSoundVolume"), config.GetConfig().getInt("effects.friendJoinSoundPitch"));
+                    otherPlayerBukkitInstance.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', config.GetConfig().getString("locale.friendLeftAlert").replaceAll(Pattern.quote("{friend}"), player.getName())));
                 }
             }
         }
